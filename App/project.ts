@@ -47,27 +47,28 @@ namespace PROJECT {
         let continue_process = ALERTS.confirm_yes_no(SpreadsheetApp, 'Voy a reasignar preguntas y encabezados de las hojas. ¿Estás de acuerdo?');
         if (continue_process) {
             let responses = MODELS.GenericModel(SETTINGS.RESPONSES);
+            set_headers_and_font(responses.sheet, <string[]>responses.cols.map(el => el.verbose_name));
+
             let report = MODELS.GenericModel(SETTINGS.REPORT);
+            set_headers_and_font(report.sheet, <string[]>report.cols.map(el => el.verbose_name));
+
             let questions = MODELS.QuestionsModel();
             set_headers_and_font(questions.sheet, SETTINGS.QUESTIONS_HEADERS);
+
             let datas = MODELS.DatasModel();
             set_headers_and_font(datas.sheet, SETTINGS.DATAS_HEADERS);
+
             let participants = MODELS.ParticipantsModel();
             set_headers_and_font(participants.sheet, SETTINGS.PARTICIPANTS_HEADERS);
-
-            let headers_responses_report = [];
-            for (const col of responses.cols) {
-                headers_responses_report.push(col.verbose_name);
-            }
-
-            let response_headers = headers_responses_report.slice(0);
-            response_headers.push('Estatus');
-            set_headers_and_font(responses.sheet, response_headers);
-            set_headers_and_font(report.sheet, headers_responses_report);
         }
     }
 
 
+    /**
+     * Inserta encabezados de columnas a la página pasada como parámetro.
+     * @param sheet (GoogleAppsScript.Spreadsheet.Sheet): Hoja en la que se van a insertar los strings.
+     * @param headers (string[]): Encabezados de las columnas.
+     */
     function set_headers_and_font(sheet: GoogleAppsScript.Spreadsheet.Sheet, headers: string[]) {
         let range = sheet.getRange(1, 1, 1, headers.length);
         range.setFontWeight("bold");

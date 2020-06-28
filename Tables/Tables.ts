@@ -1,3 +1,4 @@
+
 namespace TABLES {
 
     type col = {
@@ -48,4 +49,5 @@ namespace TABLES {
         { name: "subject", data_type: 'string', verbose_name: 'Asignatura' },
         { name: "teacher", data_type: 'string', verbose_name: 'Profesor' },
     ];
+
 }

@@ -1,5 +1,7 @@
-/// <reference path="./book.ts"/>
 /// <reference path="../Settings.ts" />
+
+
+// Author: Luis Fernando Cruz Carrillo.
 
 /**
  * Clases de las hojas de cálculo.
@@ -363,8 +365,8 @@ namespace SHEET {
                 value = this.check_type(value, col);
                 value = this.check_min(value, col);
 
-                if (!this.datas[col.name] && col.default) {
-                    value = col.default;
+                if (col.default) {
+                    value = value ? value : col.default;
                 }
 
                 if (col.auto_add) {
