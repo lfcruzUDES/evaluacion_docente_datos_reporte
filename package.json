@@ -1,0 +1,22 @@
+{
+  "name": "evaluacion_docente_datos_reporte",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Code.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lfcruzUDES/evaluacion_docente_datos_reporte.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lfcruzUDES/evaluacion_docente_datos_reporte/issues"
+  },
+  "homepage": "https://github.com/lfcruzUDES/evaluacion_docente_datos_reporte#readme",
+  "dependencies": {
+    "@types/google-apps-script": "^1.0.14"
+  }
+}
