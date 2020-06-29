@@ -62,7 +62,7 @@ namespace REPORT {
                 report_row.pop();
                 let counter = 0
                 // Itera en las respuestas. >>>
-                for (let j = 0; j < responses_values.length; j++) {
+                for (let j = 1; j < responses_values.length; j++) {
                     let resposte_row = responses_values[j];
 
                     if (report_row[0] === resposte_row[0] && report_row[1] === resposte_row[1]
@@ -70,7 +70,7 @@ namespace REPORT {
                         && !resposte_row[table.length - 1]) {
                         counter++;
                         // Itera en la tabla genética. >>>
-                        for (let k = 5; k < table.length - 2; k++) {
+                        for (let k = 5; k < table.length - 1; k++) {
                             if (resposte_row[k]) {
                                 let item_table = table[k];
                                 if (item_table.data_type === 'number') {
