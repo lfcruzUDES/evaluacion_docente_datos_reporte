@@ -105,6 +105,7 @@ namespace MODELS {
                 { name: 'counter', data_type: 'number', verbose_name: 'Respuestas', default: 0 },
                 { name: 'average', data_type: 'string', verbose_name: 'Promedio', default: 0 }
             )
+
         }
 
         return generic;
