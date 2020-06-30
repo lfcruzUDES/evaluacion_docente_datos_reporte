@@ -60,7 +60,6 @@ namespace REPORT {
             for (let i = 1; i < report_values.length; i++) {
                 let report_row = report_values[i];
                 report_row.pop();
-                let counter = 0
                 // Itera en las respuestas. >>>
                 for (let j = 1; j < responses_values.length; j++) {
                     let resposte_row = responses_values[j];
@@ -68,8 +67,9 @@ namespace REPORT {
                     if (report_row[0] === resposte_row[0] && report_row[1] === resposte_row[1]
                         && report_row[2] === resposte_row[2] && report_row[3] === resposte_row[3]
                         && !resposte_row[table.length - 1]) {
-                        counter++;
+
                         // Itera en la tabla genética. >>>
+                        report_row[report_row.length - 1]++;
                         for (let k = 5; k < table.length - 1; k++) {
                             if (resposte_row[k]) {
                                 let item_table = table[k];
@@ -83,10 +83,10 @@ namespace REPORT {
                         // Itera en la tabla genética. <<<
                         resposte_row[table.length - 1] = true;
                         responses.sheet.getRange(j + 1, 1, 1, resposte_row.length).setValues([resposte_row]);
+
                     }
                 }
                 // Itera en las respuestas. <<<
-                report_row[report_row.length - 1] = counter;
                 report.sheet.getRange(i + 1, 1, 1, report_row.length).setValues([report_row])
             }
             // Itera en la hoja de reporte. <<<
