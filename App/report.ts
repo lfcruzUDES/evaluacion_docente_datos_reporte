@@ -95,18 +95,28 @@ namespace REPORT {
 
     }
 
-
+    /**
+     * Obtiene los números de columna de las columnas llamadas
+     * number y average
+     * @param cols 
+     */
     function get_cells_number_type(cols: {}[]) {
         let cells = [];
         for (let i = 5; i < cols.length; i++) {
-            if (cols[i].data_type === 'number' && cols[i].name !== 'average' ) {
-                cells.push(i+1);
+            if (cols[i].data_type === 'number' && cols[i].name !== 'average') {
+                cells.push(i + 1);
             }
         }
         return cells;
     }
 
-    function get_ranges_to_prom(sheet:GoogleAppsScript.Spreadsheet.Sheet, row: number, cells: number[]) {
+    /**
+     * Obtiene los rangos para el promedio
+     * @param sheet 
+     * @param row 
+     * @param cells 
+     */
+    function get_ranges_to_prom(sheet: GoogleAppsScript.Spreadsheet.Sheet, row: number, cells: number[]) {
         let formula = `=AVERAGEA(`;
         for (let i = 0; i < cells.length - 1; i++) {
             let range = sheet.getRange(row, cells[i]).getA1Notation();
@@ -118,4 +128,32 @@ namespace REPORT {
         return formula;
     }
 
+    /**
+     * Realiza el promedio de cada columna
+     */
+    export function average_by_column() {
+
+        const cols_excluded = 'academic_offert grade group subject teacher counter average';
+
+        let report = MODELS.GenericModel(SETTINGS.REPORT);
+        let rows = report.all();
+        for (const row of rows) {
+            let values = row.datas
+            for (const key in values) {
+                if (cols_excluded.indexOf(key) < 0) {
+                    if (String(Number(values[key]) * 1) !== 'NaN' && values[key]) {
+                        if (values[key] !== '#NUM!' && values[key] !== 'NaN') {
+                            try {
+                                values[key] = Number(values[key]) / Number(values['counter']);
+                            } catch (error) {
+                                values[key] = '';
+                            }
+                        }
+                    }
+                }
+            }
+
+            row.save();
+        }
+    }
 }

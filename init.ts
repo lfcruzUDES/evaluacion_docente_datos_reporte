@@ -9,5 +9,6 @@ function onOpen(e) {
         .addItem('Reasignar preguntas y encabezados', 'PROJECT.set_questions_and_headers')
         .addItem('Preparar hoja de reporte', 'REPORT.prepare_report_sheet')
         .addItem('Analisar respuestas', 'REPORT.compare_data_and_responses')
+        .addItem('Generar promedio', 'REPORT.average_by_column')
         .addToUi();
 }
